@@ -50,7 +50,7 @@ class UserClient:
 
         raise Exception(f"HTTP {response.status_code}: {response.text}")
 
-    async def get_user(self, id: int) -> User:
+    def get_user(self, id: int) -> User:
         headers = {"Content-Type": "application/json"}
 
         response = requests.get(

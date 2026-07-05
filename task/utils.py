@@ -1,5 +1,27 @@
 from task.user_client import User
 
+
+def join_context_user_id_and_aboutme(context: list[User]) -> str:
+    """
+    Get the user information to embed but only user_id and about_me fields. This is used for the vectorstore to embed only relevant information.
+    """
+    content = ""
+    small_spacing = " " * 2
+
+    for user in context:
+        user_content = "User:\n"
+
+        user_id = user.id
+        about_me = user.about_me
+
+        user_content += f"{small_spacing} user_id: {user_id}" + "\n"
+        user_content += f"{small_spacing} about_me: {about_me}" + "\n"
+
+        content += "\n" + user_content + "\n\n"
+
+    return content
+
+
 def join_context(context: list[User]) -> str:
     # TODO:
     # You cannot pass raw JSON with user data to LLM (" sign), collect it in just simple string or markdown.
